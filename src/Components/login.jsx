@@ -20,7 +20,7 @@ export default class Login extends React.Component {
   doLogin = (event) => {
     event.preventDefault();
 
-    login(this.state.loginDate);
+    login(this.state.loginData);
   }
 
   onChange = (name, event) => {
