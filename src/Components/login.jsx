@@ -45,7 +45,7 @@ render() {
 
       <InputLine
       name="email"
-      label="Correo"
+      label="Email"
       type="text"
       onChange={this.onChange}
       error={errors.email}
@@ -78,13 +78,13 @@ render() {
       </div>
    </div>
 
-      <button Class="Iniciar"
+      <button className="Iniciar"
       onClick={this.doLogin}>Iniciar sesi&oacute;n
       </button>
 
       <Link to="/registro">
 
-      <button class="Registrarse">Registrarse</button>
+      <button className="Registrarse">Registrarse</button>
 
        < /Link>
     </form>

@@ -52,7 +52,7 @@ export default class ContactForm extends React.Component {
       <form>
         <InputLine
           name="email"
-          label="Correo"
+          label="Email"
           type="text"
           onChange={this.onChange}
           error={errors.email}

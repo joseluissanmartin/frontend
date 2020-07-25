@@ -5,7 +5,7 @@ export default function Section(props){
     <section>
 
     <li>
-        <a href
+        <a
      onClick={() => {
      window.location.href = "/inicio";
      }}
@@ -15,7 +15,7 @@ export default function Section(props){
     </li>
 
     <li>
-        <a href
+        <a
      onClick={() => {
      window.location.href = "/registro";
      }}
@@ -25,7 +25,7 @@ export default function Section(props){
      </li>
 
      <li>
-        <a href
+        <a
      onClick={() => {
      window.location.href = "/catalogo";
      }}
@@ -35,7 +35,7 @@ export default function Section(props){
      </li>
 
      <li>
-        <a href
+        <a
      onClick={() => {
      window.location.href = "/ingresoEspecificaciones";
      }}
@@ -45,7 +45,7 @@ export default function Section(props){
      </li>
 
      <li>
-        <a href
+        <a
      onClick={() => {
      window.location.href = "/buscador";
      }}
