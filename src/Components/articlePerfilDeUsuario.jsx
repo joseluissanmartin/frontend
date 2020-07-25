@@ -11,7 +11,7 @@ export default function articlePerfilDeUsuario(){
 
     <img className ="fotoPerfil" src= {FotoPerfil} alt="A FotoPerfil"/>
     <h25>Nombre de usuario:</h25>
-    <h26>Correo:</h26>
+    <h26>Email:</h26>
     <h27>Edad:</h27>
 
     <button className ="botonHistorialCompras">Historial de Compras</button>
