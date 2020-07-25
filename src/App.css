@@ -115,74 +115,18 @@ input, select, text {
   position: relative;
   top:-195px;
 }
-.nombreRegistro{
-  position: relative;
-  left: -905px;
-  top:-90px;
-  width:1500px;
-}
-.passUsuario{
-  position: relative;
-  top:-110px;
-  color: black;
-  font-size: 105%;
-}
-.passReg{
-  position: relative;
-  left: 175px;
-  top: -182px;
-  width:300px;
-}
-.passUsuario2{
-  position: relative;
-  top:-200px;
-  color: black;
-  font-size: 105%;
-}
-.passReg2{
-  position: relative;
-  left: 175px;
-  top: -272px;
-  width:300px;
-}
-.emailUsuario{
-  position: relative;
-  left: 0px;
-  top: -285px;
-  width:300px;
-  color: black;
-  font-size: 105%;
-}
-.emailReg{
-  position: relative;
-  left: 175px;
-  top: -360px;
-  width:300px;
 
-}
-.edadlUsuario{
-  position: relative;
-  left: 0px;
-  top: -370px;
-  width:300px;
-  color: black;
-  font-size: 105%;
-}
-.edadUs{
+.botoncPerfil{
   position: relative;
   left: 175px;
-  top: -445px;
-  width:150px;
+  top: 0px;
+  font-size: 90%;
 }
-.cPerfil{
-  position: relative;
-  left: 175px;
-  top: -425px;
-}
-.cancelar{
+.botoncancelar{
   position: relative;
   left: 220px;
-  top: -425px;
+  top: 0px;
+  font-size: 90%;
 }
 
 .u{
@@ -744,4 +688,10 @@ left:70px;
   left: -250px;
   width: 175px;
   height: 65px;
+}
+.ordenRegistro{
+  position: relative;
+  top: 0px;
+  left: -1070px;
+  width: 1200px;
 }

@@ -45,7 +45,7 @@ render() {
 
       <InputLine
       name="email"
-      label="Email"
+      label="Correo"
       type="text"
       onChange={this.onChange}
       error={errors.email}

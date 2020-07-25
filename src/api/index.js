@@ -1,12 +1,11 @@
 export function login(usuario){
 
-  var url = 'http://localhost:5000/registro'
+  var url = 'http://localhost:5000/login'
   var datos = {
   email: usuario.email,
   password: usuario.password,
   nombre:'buena carlos',
   fecha:'hoy'
-
 };
 
   fetch( url , {
