@@ -20,7 +20,14 @@ export default class Login extends React.Component {
   doLogin = (event) => {
     event.preventDefault();
 
-    login(this.state.loginData);
+    login(this.state.loginData)
+      .then(response => {
+        return response.text();
+      })
+      .then(token => {
+        localStorage.setItem('token', token);
+        this.props.history.push('/login');
+      });
   }
 
   onChange = (name, event) => {
