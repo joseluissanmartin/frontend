@@ -9,6 +9,7 @@ import Buscador from './Pages/buscador';
 import PerfilDeUsuario from './Pages/perfilDeUsuario';
 import IngresoPreferencias from './Pages/ingresoPreferencias';
 import Notfund from './Pages/notfund';
+import Registrolleno from './Pages/registrolleno';
 import {
   BrowserRouter as Router,
   Switch,
@@ -28,6 +29,8 @@ function App(){
       <Route path = "/buscador" component={Buscador} />
       <Route path = "/perfilDeUsuario" component={PerfilDeUsuario} />
       <Route path = "/ingresoPreferencias" component={IngresoPreferencias} />
+      <Route path = "/registrolleno" component={Registrolleno} />
+
       <Route path ="*" component={Notfund} />
       </Switch>
       </Router>

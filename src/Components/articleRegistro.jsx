@@ -5,7 +5,7 @@ import TextareaLine from './textareaLine';
 import OutputLine from './outputLine';
 import { validateCorreo, isEmpty } from './validations';
 import {Link} from 'react-router-dom';
-import { register } from '../api';
+import { register } from '../api/indexReg';
 
 export default class RegisterForm extends React.Component {
   state = {
@@ -23,19 +23,25 @@ export default class RegisterForm extends React.Component {
     }
   };
 
+
   doRegister = (event) => {
+
     event.preventDefault();
 
     register(this.state.registerData)
+
+
       .then((response) => {
         return response.text();
     })
 
       .then((token) => {
         localStorage.setItem('token', token);
-        this.context.history.push('/perfilDeUsuario')
+        this.props.history.push('/registrolleno');
     });
   }
+
+
 
   onChange = (name, event) => {
     const value = event.target.value;
@@ -58,36 +64,12 @@ export default class RegisterForm extends React.Component {
     return true;
   }
 
-  doRegister = (event) => {
-    const {
-      correo,
-      password,
-      confirmation,
-      age,
-    } = this.state.registerData;
-
-    const correoError = !validateCorreo(correo);
-    const passwordError = isEmpty(password);
-    const confirmationError = !this.validateConfirmation(confirmation, password);
-    const ageError = isEmpty(age);
-
-    this.setState({
-      errors: {
-        correo: correoError,
-        password: passwordError,
-        confirmation: confirmationError,
-        age: ageError,
-      }
-    });
-
-    event.preventDefault();
-  }
-
   render() {
   const {
       correo,
       password,
       confirmation,
+      telefono,
       age
     } = this.state.registerData;
   const { errors } = this.state;
@@ -96,6 +78,8 @@ export default class RegisterForm extends React.Component {
   return(
     <article className="formulario">
     <form>
+
+    <div className = "procesoDeRegistro">Proceso de registro</div>
 
       <div className ="marco">
       <div>email</div>
@@ -107,7 +91,7 @@ export default class RegisterForm extends React.Component {
               onChange={this.onChange}
               error={errors.correo}
               value={correo}
-              placeholder="correo@ejemplo.cl"
+              placeholder="correo@ejemplo.cl (Obligatorio)"
           />
         </div>
       <div>Contrase&ntilde;a</div>
@@ -121,24 +105,25 @@ export default class RegisterForm extends React.Component {
               onChange={this.onChange}
               error={errors.password}
               value={password}
-              placeholder="Ingrese una contraseña"
+              placeholder="Obligatorio"
           />
         </div>
-    <div>Repita Contrase&ntilde;a</div>
+    <div>Numero de Telefono</div>
       <div className="ordenRegistro">
          <InputLine
-             name="confirmation"
-             label="Repite Contrase&ntilde;a"
-             type="password"
+             name="telefono"
+             label="Opcional"
+             type="number"
              required={true}
              minLength="4"
              maxLength="8"
              onChange={this.onChange}
-             error={errors.confirmation}
-             value={confirmation}
-             placeholder="Repita la contraseña"
+             error={errors.telefono}
+             value={telefono}
+             placeholder="Opcional"
          />
         </div>
+
     <div>Ingrese su edad</div>
       <div className="ordenRegistro">
           <InputLine
@@ -152,6 +137,7 @@ export default class RegisterForm extends React.Component {
               onChange={this.onChange}
               error={errors.age}
               value={age}
+              placeholder="Opcional"
           />
         </div>
 

@@ -28,22 +28,3 @@ export function getDatos() {
     }
   });
 }
-
-export function register (datos){
-
-  var url = 'http://localhost:5000/registro'
-  var datos = {
-  correo: datos.correo,
-  password: datos.password,
-  fecha:"hoy",
-  nombre:"Pc"
-};
-
-  return fetch( url , {
-    method: 'POST',
-    body : JSON.stringify( datos ),
-    headers: {
-      'Content-Type' : 'application/json'
-    }
-  });
-}

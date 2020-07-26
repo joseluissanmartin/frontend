@@ -1,82 +1,168 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
+export default class RegisterForm extends React.Component {
+  state = {
+    registerData: {
+      so: '',
+      procesador: '',
+      almacenamiento: '',
+      memoria: '',
+      grafica: '',
+      direct: '',
+    },
+    errors: {
+      so: false,
+      procesador: false,
+      almacenamiento: false,
+      memoria: false,
+      grafica: false,
+      direct: false
+    }
+  };
+  doRegister = (event) => {
+
+    event.preventDefault();
+
+    register(this.state.registerData)
 
 
-export default function ArticleEspecificaciones(){
+      .then((response) => {
+        return response.text();
+    })
 
-  return(
-    <article>
-      <h12>Caracteristicas de tu equipo</h12>
-      <div className = "notificacion">
-      <h13>Problema para ingresar las caracteristicas de tu equipo ? haz click aqui: </h13>
-      <button className = "botonayuda">Ayuda</button>
-      </ div>
-      <div className ="conjunto1">
-      <h14>Sistema operativo: </h14>
-      <select className = "conjuntocaracteristicas">
-      <option>Busque su Sistema Operativo</option>
-        <option>Windows 10</option>
-        <option>Windows 8 o 8.1</option>
-        <option>Windows 7</option>
-        <option>Windows Xp o Vista</option>
-        <option>MacOS</option>
-        <option>Linux</option>
-      </select>
-      <h14>Procesador: </h14>
-      <select className = "conjuntocaracteristicas">
-        <option>Busque su Procesador</option>
-        <option>Intel core 2 duo</option>
-        <option>Intel core 2 quad</option>
-        <option>Intel core i3</option>
-        <option>Intel core i5</option>
-        <option>Intel core i7</option>
-        <option>Intel core i9</option>
-      </select>
-      <h14>Almacenamineto libre: </h14>
-      <select className = "conjuntocaracteristicas">
-        <option>De cuanto espacio libre dispone?</option>
-        <option>Menos de 10GB</option>
-        <option>Más de 10 GB</option>
-        <option>Más de 50 GB</option>
-        <option>Más de 100 GB</option>
-        <option>Más de 500GB</option>
-      </select>
-      <h14>Memoria Ram:</h14>
-      <select className = "conjuntocaracteristicas">
-        <option>Seleccione la cantidad de memoria RAM</option>
-        <option>Menos de 2GB</option>
-        <option>2GB o mas </option>
-        <option>4GB o mas </option>
-        <option>8GB o mas</option>
-        <option>16GB o mas</option>
-      </select>
-      <h14>Tarjeta grafica:</h14>
-      <select className = "conjuntocaracteristicas">
-        <option>Seleccione la tageta grafica que posee</option>
-        <option>Intel Hd Graphics 5000</option>
-        <option>AMD radeon 5000</option>
-        <option>GTX 1060</option>
-        <option>MSI</option>
-        <option>Zotac</option>
-      </select>
-      <h14>Direct X: </h14>
-      <select className = "conjuntocaracteristicas">
-        <option>Seleccione su Direct</option>
-        <option>Directx 7</option>
-        <option>Directx 8</option>
-        <option>Directx 9</option>
-        <option>Directx 10</option>
-        <option>Directx 11 o mas</option>
-      </select>
-      </div>
-
-      <Link to= "/ingresoEspecificacionesCompletado"><button className= "datospcusuario">Guardar</button></Link>
-  </article>
+      .then((token) => {
+        localStorage.setItem('token', token);
+        this.props.history.push('/inicio');
+    });
+  }
+  onChange = (name, event) => {
+    const value = event.target.value;
+    const registerData = Object.assign({}, this.state.registerData);
+    registerData[name] = value;
+    this.setState({
+      registerData
+    });
+  }
+  render() {
+    const {
+        so,
+        procesador,
+        almacenamiento,
+        memoria,
+        grafica,
+        direct
+      } = this.state.registerData;
+    const { errors } = this.state;
 
 
-  );
-}
+    return(
+      <article>
+
+        <h12>Caracteristicas de tu equipo</h12>
+        <div className = "notificacion">
+        <h13>Problema para ingresar las caracteristicas de tu equipo ? haz click aqui: </h13>
+        <button className = "botonayuda">Ayuda</button>
+        </ div>
+
+        <div className ="conjunto1">
+
+        <div>Sistema operativo</div>
+
+          <div className="ordenRegistro">
+            <InputLine
+                name="so"
+                type="text"
+                required={true}
+                onChange={this.onChange}
+                error={errors.so}
+                value={so}
+                placeholder="ej: windows 10"
+            />
+          </div>
+        <div>Procesador</div>
+          <div className="ordenRegistro">
+            <InputLine
+                name="procesador"
+                type="text"
+                required={true}
+                onChange={this.onChange}
+                error={errors.procesador}
+                value={procesador}
+                placeholder="Ej: intel i5, AMD, ... etc."
+            />
+          </div>
+      <div>Almacenamineto libre</div>
+        <div className="ordenRegistro">
+           <InputLine
+               name="almacenamiento"
+               type="text"
+               required={true}
+               onChange={this.onChange}
+               error={errors.almacenamiento}
+               value={almacenamiento}
+               placeholder="10Gb, 20GB, 50GB, ... etc."
+           />
+          </div>
+
+      <div>Memoria RAM</div>
+        <div className="ordenRegistro">
+            <InputLine
+                name="memoria"
+                type="text"
+                required={true}
+                onChange={this.onChange}
+                error={errors.memoria}
+                value={memoria}
+                placeholder="Ej: 2GB, 4GB, 8Gb, ... etc."
+            />
+          </div>
+
+      <div>Tarjeta Grafica</div>
+        <div className="ordenRegistro">
+            <InputLine
+                name="grafica"
+                type="text"
+                required={true}
+                onChange={this.onChange}
+                error={errors.grafica}
+                value={grafica}
+                placeholder="Ej:Intel, AMD, Nvidia 2GB, 4GB,.. etc."
+            />
+      <div>Tarjeta Grafica</div>
+        <div className="ordenRegistro">
+            <InputLine
+                name="grafica"
+                type="text"
+                required={true}
+                onChange={this.onChange}
+                error={errors.grafica}
+                value={grafica}
+                placeholder="Ej:Intel, AMD, Nvidia 2GB, 4GB,.. etc."
+            />
+      <div>Direct</div>
+        <div className="ordenRegistro">
+            <InputLine
+                name="direct"
+                type="numbrer"
+                required={true}
+                onChange={this.direct}
+                error={errors.grafica}
+                value={direct}
+                placeholder="Ej:7 , 8 ,9, 10"
+            />
+              </div>
+
+        </div>
+
+        <Link to= "/ingresoEspecificacionesCompletado"><button className= "datospcusuario">Guardar</button></Link>
+    </article>
+  }
+
+  
+
+
+
 
 /*
 <article>

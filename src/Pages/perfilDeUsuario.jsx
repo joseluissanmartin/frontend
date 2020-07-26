@@ -13,7 +13,6 @@ export default function PerfilDeUsuario(){
       <Section />
     </div>
     <ArticlePerfilDeUsuario/>
-    <PerfilDeUsuarioInfo />
     </>
 
 );
