@@ -27,7 +27,7 @@ function App(){
       <Route path = "/ingresoEspecificaciones"><IngresoEspecificaciones /></ Route>
       <Route path = "/ingresoEspecificacionesCompletado"><IngresoEspecificacionesCompletado /></ Route>
       <Route path = "/buscador"><Buscador /></ Route>
-      <Route path = "/login"><PerfilDeUsuario /></ Route>
+      <Route path = "/perfilDeUsuario"><PerfilDeUsuario /></ Route>
       <Route path = "/ingresoPreferencias"><IngresoPreferencias /></ Route>
       <Route path ="*"><Notfund /></ Route>
       < /Switch>
