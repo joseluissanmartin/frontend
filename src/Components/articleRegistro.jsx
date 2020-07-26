@@ -3,24 +3,39 @@ import InputLine from './inputLine';
 import SelectLine from './selectLine';
 import TextareaLine from './textareaLine';
 import OutputLine from './outputLine';
-import { validateEmail, isEmpty } from './validations';
+import { validateCorreo, isEmpty } from './validations';
 import {Link} from 'react-router-dom';
+import { register } from '../api';
 
 export default class RegisterForm extends React.Component {
   state = {
     registerData: {
-      email: '',
+      correo: '',
       password: '',
       confirmation: '',
       age: '',
     },
     errors: {
-      email: false,
+      correo: false,
       password: false,
       confirmation: false,
       age: false,
     }
   };
+
+  doRegister = (event) => {
+    event.preventDefault();
+    register(this.state.registerData)
+      .then((response) => {
+        return response.text();
+    })
+
+      .then((token) => {
+        localStorage.setItem('token', token);
+        this.context.history.push('/perfilDeUsuario')
+    });
+  }
+
   onChange = (name, event) => {
     const value = event.target.value;
     const registerData = Object.assign({}, this.state.registerData);
@@ -44,20 +59,20 @@ export default class RegisterForm extends React.Component {
 
   doRegister = (event) => {
     const {
-      email,
+      correo,
       password,
       confirmation,
       age,
     } = this.state.registerData;
 
-    const emailError = !validateEmail(email);
+    const correoError = !validateCorreo(correo);
     const passwordError = isEmpty(password);
     const confirmationError = !this.validateConfirmation(confirmation, password);
     const ageError = isEmpty(age);
 
     this.setState({
       errors: {
-        email: emailError,
+        correo: correoError,
         password: passwordError,
         confirmation: confirmationError,
         age: ageError,
@@ -69,7 +84,7 @@ export default class RegisterForm extends React.Component {
 
   render() {
     const {
-      email,
+      correo,
       password,
       confirmation,
       age
@@ -82,20 +97,20 @@ export default class RegisterForm extends React.Component {
     <form>
 
       <div className ="marco">
-      <h32>email</h32>
-        <div class="ordenRegistro">
+      <div>email</div>
+        <div className="ordenRegistro">
           <InputLine
-              name="email"
+              name="correo"
               type="email"
               required={true}
               onChange={this.onChange}
-              error={errors.email}
-              value={email}
+              error={errors.correo}
+              value={correo}
               placeholder="correo@ejemplo.cl"
           />
         </div>
-      <h32>Contrase&ntilde;a</h32>
-        <div class="ordenRegistro">
+      <div>Contrase&ntilde;a</div>
+        <div className="ordenRegistro">
           <InputLine
               name="password"
               type="password"
@@ -108,8 +123,8 @@ export default class RegisterForm extends React.Component {
               placeholder="Ingrese una contraseña"
           />
         </div>
-    <h32>Repita Contrase&ntilde;a</h32>
-      <div class="ordenRegistro">
+    <div>Repita Contrase&ntilde;a</div>
+      <div className="ordenRegistro">
          <InputLine
              name="confirmation"
              label="Repite Contrase&ntilde;a"
@@ -123,8 +138,8 @@ export default class RegisterForm extends React.Component {
              placeholder="Repita la contraseña"
          />
         </div>
-    <h32>Ingrese su edad</h32>
-      <div class="ordenRegistro">
+    <div>Ingrese su edad</div>
+      <div className="ordenRegistro">
           <InputLine
               name="age"
               label="Edad"

@@ -2,6 +2,7 @@ import React from 'react';
 import Header from '../Components/header';
 import Section from '../Components/section';
 import ArticlePerfilDeUsuario from '../Components/articlePerfilDeUsuario';
+import PerfilDeUsuarioInfo from '../Components/perfilDeUsuarioInfo';
 
 
 export default function PerfilDeUsuario(){
@@ -12,6 +13,7 @@ export default function PerfilDeUsuario(){
       <Section />
     </div>
     <ArticlePerfilDeUsuario/>
+    <PerfilDeUsuarioInfo />
     </>
 
 );

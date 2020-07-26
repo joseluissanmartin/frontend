@@ -1,4 +1,4 @@
-export function validateEmail(value){
+export function validateCorreo(value){
   if (isEmpty(value)) {
     return false;
   }

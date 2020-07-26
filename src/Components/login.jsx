@@ -1,6 +1,6 @@
 import React from 'react';
 import InputLine from './inputLine';
-import { validatePassword, validateEmail } from './validations';
+import { validatePassword, validateCorreo } from './validations';
 import {Link} from 'react-router-dom';
 import { login } from '../api';
 
@@ -8,11 +8,11 @@ import { login } from '../api';
 export default class Login extends React.Component {
   state = {
     loginData: {
-      email: '',
+      correo: '',
       password: ''
     },
     errors: {
-      email: false,
+      correo: false,
       password: false
     }
   };
@@ -21,13 +21,21 @@ export default class Login extends React.Component {
     event.preventDefault();
 
     login(this.state.loginData)
-      .then(response => {
+      .then((response) => {
         return response.text();
       })
+
+      .then((token) => {
+        localStorage.setItem('token', token);
+        this.context.history.push('/perfilDeUsuario')
+      });
+
+/*
       .then(token => {
         localStorage.setItem('token', token);
         this.props.history.push('/perfilDeUsuario');
       });
+      */
   }
 
   onChange = (name, event) => {
@@ -40,7 +48,7 @@ export default class Login extends React.Component {
   }
 
 render() {
-  const { email, password } = this.state.loginData;
+  const { correo, password } = this.state.loginData;
   const { errors } = this.state;
 
   return (
@@ -51,12 +59,12 @@ render() {
     <div className="email">
 
       <InputLine
-      name="email"
+      name="correo"
       label="Correo"
       type="text"
       onChange={this.onChange}
-      error={errors.email}
-      value={email}
+      error={errors.correo}
+      value={correo}
       placeholder="Ingrese su e-mail"
       />
 
