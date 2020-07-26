@@ -25,6 +25,7 @@ export default class RegisterForm extends React.Component {
 
   doRegister = (event) => {
     event.preventDefault();
+
     register(this.state.registerData)
       .then((response) => {
         return response.text();
@@ -83,13 +84,13 @@ export default class RegisterForm extends React.Component {
   }
 
   render() {
-    const {
+  const {
       correo,
       password,
       confirmation,
       age
     } = this.state.registerData;
-    const { errors } = this.state;
+  const { errors } = this.state;
 
 
   return(

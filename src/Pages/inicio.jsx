@@ -4,11 +4,11 @@ import Header from '../Components/header';
 import Section from '../Components/section';
 import Login from '../Components/login';
 
-export default function Inicio(){
+export default function Inicio(props){
   return(
       <div className="App">
       <Header />
-      <Login />
+      <Login {...props}/>
       <Section />
       <Article />
       </div>

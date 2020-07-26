@@ -27,7 +27,7 @@ export default class Login extends React.Component {
 
       .then((token) => {
         localStorage.setItem('token', token);
-        this.context.history.push('/perfilDeUsuario')
+        this.props.history.push('/perfilDeUsuario');
       });
 
 /*
