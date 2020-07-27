@@ -5,13 +5,13 @@ import Section from '../Components/section';
 import ArticleEspecificaciones from '../Components/articleEspecificaciones';
 
 
-export default function IngresoEspecificaciones(){
+export default function IngresoEspecificaciones(props){
   return(
     <>
     <Header />
     <Login />
     <Section />
-    <ArticleEspecificaciones />
+    <ArticleEspecificaciones {...props} />
     </>
 );
 }
